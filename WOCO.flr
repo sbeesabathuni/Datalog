@@ -1,0 +1,287 @@
+/* Name : Sravya Beesabathuni
+SBU ID : 11327265
+Email: sbeesabathun@cs.stonybrook.edu
+
+I pledge my honor that all parts of this project were done by me individually
+and without collaboration with anybody else. I did not use any external code
+that is directly related to this assignment.
+*/
+
+
+
+
+/*  
+	// describes the person
+   	person(P_Id: symbol, P_Name: symbol)
+	Key: P_Id
+
+   	// describes the company
+   	company(C_Id: symbol, C_Name: symbol, Stocks_Num: symbol, Stock_Val: symbol) 
+	Key: C_Id
+	
+	// information about board members
+	board_members(P_Id: symbol,C_Id: symbol)
+	Key: P_Id,C_Id
+
+	// people holding shares in a company
+	person_shares(P_Id: symbol, C_Id: symbol, Stocks_Num: symbol)
+	Key: P_Id,C_Id
+	
+	
+
+	// other companies holding shares of company
+	company_shares(C_ID: symbol, ShareC_Id: symbol, Stocks_Num: symbol)
+	Key: C_ID, ShareC_Id
+
+	// companies association with industries
+	association(C_ID: symbol, I_ID: symbol)
+	Key: C_ID, I_ID
+
+	// industries information
+	industries(I_ID: symbol, I_Name: symbol)
+	Key: I_ID
+		
+*/
+
+/*
+	The tables are in 4th normal form. 4NF
+*/
+
+	person(p1, 'Bill Doe').
+	person(p2, 'Bill Seth').
+	person(p3, 'John Smyth').
+	person(p4, 'Anne Smyle').
+	person(p5, 'Steve Lamp').
+	person(p6, 'May Serge').
+	person(p7, 'Bill Public').
+	person(p8, 'Muck Lain').
+
+	company(c1, QUE, 150000, 30).
+	company(c2, RHC, 250000, 20).
+	company(c3, Elgog, 1000000, 400).
+	company(c4, Elpa, 9000000, 300).
+	company(c5, Alf, 10000000, 700).
+	company(c6, Tfos, 10000000, 300).
+	company(c7, Ohay, 180000, 50).
+	company(c8, Gnow, 150000, 300).
+	company(c9, Ydex, 5000000, 100).
+
+	board_members(p2,c1).
+	board_members(p4,c1).
+	board_members(p3 ,c1).
+	board_members(p5 ,c2).
+	board_members(p1 ,c2).
+	board_members(p1 ,c2).
+	board_members(p5,c3).
+	board_members(p6,c3).
+	board_members(p7 ,c3).
+	board_members(p2 ,c4).
+	board_members(p3 ,c4).
+	board_members(p8 ,c4).
+	board_members(p6 ,c5).
+	board_members(p7 ,c5).
+	board_members(p1 ,c5).
+	board_members(p4 ,c6).
+	board_members(p2 ,c6).
+	board_members(p5 ,c6).
+	board_members(p4 ,c7).
+	board_members(p2 ,c7).
+	board_members(p8 ,c7).
+	board_members(p4 ,c8).
+	board_members(p2 ,c8).
+	board_members(p3 ,c8).
+	board_members(p6 ,c9).
+	board_members(p8 ,c9).
+	board_members(p3 ,c9).
+	
+
+	person_shares(p3, c1, 20000).
+	person_shares(p5, c1, 50000).
+	person_shares(p7, c1, 30000).
+	person_shares(p3, c2, 20000).
+	person_shares(p4, c2, 30000).
+	person_shares(p5, c2, 70000).
+	person_shares(p6, c2, 40000).
+	person_shares(p8, c2, 60000).
+	person_shares(p4, c5, 500000).
+	person_shares(p6, c5, 500000).
+	person_shares(p7, c3, 30000).
+	person_shares(p2, c3, 20000).
+	person_shares(p1, c6, 30000).
+	person_shares(p3, c6, 800000).
+	person_shares(p4, c6, 40000).
+	person_shares(p7, c6, 300000).
+	person_shares(p5, c7, 50000).
+	person_shares(p8, c7, -4000).
+	person_shares(p2, c8, 40000).
+	person_shares(p7, c8, 80000).
+	person_shares(p1, c4, 100000).
+	person_shares(p5, c4, 90000).
+	person_shares(p6, c4, -10000).
+	person_shares(p8, c4, 30000).
+	person_shares(p6, c9, -40000).
+	person_shares(p8, c9, -80000).
+	
+	company_shares(c1, c2, 10000).
+	company_shares(c1, c3, 20000).
+	company_shares(c1, c4, 30000).
+	company_shares(c5, c9, -100000).
+	company_shares(c5, c3, 400000).
+	company_shares(c5, c4, 100000).
+	company_shares(c3, c7, 5000).
+	company_shares(c6, c7, 30000).
+	company_shares(c6, c8, 50000).
+	company_shares(c6, c1, 200000).
+	company_shares(c4, c6, 20000).
+	company_shares(c4, c3, 30000).
+	
+
+	industries(i1, Software).
+	industries(i2, Accounting).
+	industries(i3, Automotive).
+	industries(i4, Search).
+	industries(i5, Hardware).
+
+	association(c1, i1).
+	association(c1, i2).
+	association(c2, i2).
+	association(c5, i1).
+	association(c5, i3).
+	association(c5, i3).
+	association(c3, i1).
+	association(c3, i4).
+	association(c6, i1).
+	association(c6, i5).
+	association(c7, i4).
+	association(c8, i4).
+	association(c4, i1).
+	association(c4, i5).
+	association(c9, i1).
+	association(c9, i4).
+
+	
+	/*  	Find all companies that are (partially) owned by one of their board members.	*/
+	
+	Q1(?Company) :-
+		board_members(?_PId,?_CId),
+		person_shares(?_PId,?_CId,?_Qty),
+		?_Qty > 0,
+		company(?_CId,?Company,?_Total,?),
+		?_Qty < ?_Total.
+
+	/*  	Shares of each person
+	*/
+	
+	getNetWorth(?NetWorth,?_PId) :-
+		?NetWorth = sum{?_Shares[?_PId] |  
+			person_shares(?_PId,?_CId,?_Qty),
+			?_Qty > 0,
+			company(?_CId, ?, ?, ?_Price), ?_Shares \is ?_Qty * ?_Price}.
+	
+	Q2(?Person,?NetWorth) :-
+		person(?_PId,?Person),
+		getNetWorth(?NetWorth,?_PId).
+	
+	/*  	Board Member with Maximum Share
+	*/
+	
+	getMaxShareValue(?MaxVal, ?_CId) :-
+		?MaxVal = max{?_Qty[?_CId] | board_members(?_PId,?_CId), person_shares(?_PId,?_CId,?_Qty), ?_Qty > 0}.
+		
+	
+	Q3(?Company, ?TopBoardMember) :-
+		company(?_CId,?Company,?,?),
+		getMaxShareValue(?_MaxVal, ?_CId),
+		board_members(?_PId,?_CId),
+		person_shares(?_PId,?_CId,?_MaxVal),
+		person(?_PId, ?TopBoardMember).
+	
+	/* 
+	Get companies of same industry and company1 > company2
+	*/
+	
+	Q4(?Company1,?Company2) :-
+		company(?_CId1, ?Company1, ?, ?),
+		company(?_CId2, ?Company2, ?, ?),
+		?_CId1 != ?_CId2,
+		
+		/* if atleast one industry matches */
+		
+		some(?_IId,?_Ival)^(
+			association(?_CId2,?_IId), industries(?_IId, ?_Ival) ~~> 
+			association(?_CId1,?_IId)
+		),
+		exists(?_IId,?_Ival)^(
+			association(?_CId1,?_IId), 
+			association(?_CId2,?_IId),
+			industries(?_IId, ?_Ival)
+		),
+		
+		
+		forall(?_P2,?_CId,?_QtyP2)^exists(?_QtyP3,?_P1)^
+		(
+			board_members(?_P2,?_CId2),
+			?_QtyP2 > 0,
+			person_shares(?_P2 ,?_CId,?_QtyP2)
+			 ~~> 
+			board_members(?_P1,?_CId1),
+			?_QtyP3 > 0,
+			person_shares(?_P1 ,?_CId,?_QtyP3),
+			?_QtyP3 >= ?_QtyP2
+		).
+	/* 
+	Person Company Ownership 
+	*/
+	
+	getSum(?Sum,?_PId,?_CId) :-
+		?Sum = sum{?Per[?_PId,?_CId] | 
+			indirectly_owns_person(?_PId,?_CId,?_Val),
+			?Per \is ?_Val * 100
+			}.
+
+	Q5(?Person,?Company,?Per) :-
+		getSum(?Per,?_PId,?_CId),
+		?Per > 10,
+		person(?_PId,?Person),
+		company(?_CId,?Company,?,?).
+			
+	directly_owns_person(?_PId,?_CId,?_Value) :-
+		person_shares(?_PId,?_CId,?_PShare),
+		company(?_CId,?,?_TShares,?),
+		?_PShare > 0,
+		?_Value \is ?_PShare/?_TShares.
+	
+		
+	directly_owns_company(?_CId1,?_CId2,?_CVal) :-
+		company_shares(?_CId1, ?_CId2,?_CShare),
+		company(?_CId1,?,?,?),
+		company(?_CId2,?,?_C2Total,?),
+		?_CShare > 0,
+		?_CVal \is ?_CShare/?_C2Total.
+
+	indirectly_owns_company(?_CId1,?_CId2,?_val) :- 
+		directly_owns_company(?_CId1,?_CId2,?_val).
+ 
+	indirectly_owns_company(?_CId1,?_CId2,?_val) :-
+		directly_owns_company(?_CId1,?_CId3,?_val1),
+		indirectly_owns_company(?_CId3,?_CId2,?_val2),
+		?_val \is ?_val1 * ?_val2.	
+	
+	indirectly_owns_person(?_PId,?_CId,?_Value):- 
+		directly_owns_person(?_PId,?_CId,?_Value).
+
+	indirectly_owns_person(?_PId,?_CId,?_Value) :-
+		directly_owns_person(?_PId,?_CId1,?_Value1),
+		indirectly_owns_company(?_CId1,?_CId,?_Value2),
+		?_Value \is ?_Value1 * ?_Value2.
+				
+
+	?- writeln('--- Query 1: Companies having Board Members ---')@\io,        Q1(?Company).
+
+		?- writeln('--- Query 2: Shares of each person ---')@\io,        Q2(?Person,?NetWorth).
+
+	?- writeln('--- Query 3: Board Member with Maximum Share ---')@\io,        Q3(?Company, ?TopBoardMember).	
+
+	?- writeln('--- Query 4: Get companies of same industry and company1 > company2 ---')@\io,        Q4(?Company1, ?Company2).
+	?- writeln('--- Query 5: Person Company Ownership ---')@\io,        Q5(?Person, ?Company,?Percentage).	
+	
